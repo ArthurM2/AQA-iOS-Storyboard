@@ -10,13 +10,13 @@ import XCTest
 import SwiftRadio
 
 class SwiftRadioUITests: XCTestCase {
-    
+    let app = XCUIApplication()
     typealias popupId = AccessIDs.PopupInfoView
     
     // MARK: - Setup
     override func setUp() {
         super.setUp()
-        XCUIApplication().launch()
+        app.launch()
     }
     
     // MARK: - TearDown
@@ -26,7 +26,6 @@ class SwiftRadioUITests: XCTestCase {
     
     // MARK: - Methods
     func tapElement(withIdentifier identifier: String) {
-        let app = XCUIApplication()
         let button = app.buttons[identifier]
         
         if button.exists {
@@ -37,10 +36,10 @@ class SwiftRadioUITests: XCTestCase {
     }
     
     func tapElement(withIndex index: Int) {
-        let app = XCUIApplication()
         let index = app.buttons.element(boundBy: index)
         
-        if index.exists {
+        if index.isHittable {
+            
             index.tap()
         } else {
             XCTFail("Button with index \(index) does not exist")
@@ -48,14 +47,12 @@ class SwiftRadioUITests: XCTestCase {
     }
     
     func tapAt(coordinates x: Double, y: Double) {
-        let app = XCUIApplication()
         let coordinate = app.coordinate(withNormalizedOffset: CGVector(dx: x, dy: y))
         
         coordinate.tap()
     }
     
     func tapElement(withPredicate predicate: NSPredicate, timeout: TimeInterval = 3) {
-        let app = XCUIApplication()
         let element = app.descendants(matching: .any).element(matching: predicate)
         
         let exist = element.waitForExistence(timeout: timeout)
@@ -67,49 +64,26 @@ class SwiftRadioUITests: XCTestCase {
     }
     
     func closePopup() {
-        let app = XCUIApplication()
         let closeButton = app.buttons["popupCloseButton"]
         
-        if closeButton.exists {
+        if closeButton.isHittable {
+            let checkCloseButton = closeButton.wait(for: \.isHittable, toEqual: true, timeout: 5)
+            XCTAssertTrue(checkCloseButton)
             closeButton.tap()
         } else {
             XCTFail("Popup button \(closeButton) does not exist.")
         }
     }
     
-    func pressBackOrBurgetNavBar() {
-        let app = XCUIApplication()
+    func pressBackOrBurgerNavBar() {
         let backButton = app.navigationBars.buttons.element(boundBy: 0)
         
-        if backButton.exists {
+        if backButton.isHittable {
+            let checkBackButton = backButton.wait(for: \.isHittable, toEqual: true, timeout: 5)
+            XCTAssertTrue(checkBackButton)
             backButton.tap()
         } else {
             XCTFail("Button \(backButton) does not exist.")
         }
-    }
-
-    
-    // MARK: - Tests
-    func testTapElement() {
-    }
-    
-    
-}
-
-extension XCUIElement {
-    func assertIsSelected() {
-        XCTAssertTrue(self.isSelected, "Expected element \(self) is selected")
-    }
-    
-    func assertIsNotSelected() {
-        XCTAssertFalse(self.isSelected, "Expected element \(self) is not selected")
-    }
-    
-    func assertIsVisisble() {
-        XCTAssertTrue(self.exists, "Expected element \(self) is visible")
-    }
-    
-    func assertIsNotVisible() {
-        XCTAssertFalse(self.exists, "Expected element \(self) is not visible")
     }
 }

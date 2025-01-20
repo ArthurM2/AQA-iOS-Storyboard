@@ -9,6 +9,12 @@
 import Foundation
 
 public enum AccessIDs {
+    public enum CellsView {
+        public static let cellStationImage = "stationImageView"
+        public static let cellStationTitleLabel = "stationTitleLabel"
+        public static let cellStationSubtitleLabel = "stationSubtitleLabel"
+    }
+    
     public enum PopupInfoView {
         public static let popupCloseButton = "popupCloseButton"
         public static let popupCompanyLogo = "popupCompanyLogo"
