@@ -146,7 +146,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		8ED2B16B2CE71834009F33D7 /* Actions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Actions; sourceTree = "<group>"; };
+		8ED2B16B2CE71834009F33D7 /* Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extensions; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,7 +185,7 @@
 		2C5545BB1C1124DE00728469 /* SwiftRadioUITests */ = {
 			isa = PBXGroup;
 			children = (
-				8ED2B16B2CE71834009F33D7 /* Actions */,
+				8ED2B16B2CE71834009F33D7 /* Extensions */,
 				2C5545BC1C1124DE00728469 /* SwiftRadioUITests.swift */,
 				2C5545BE1C1124DE00728469 /* Info.plist */,
 			);
@@ -353,7 +353,7 @@
 				2C5545C01C1124DE00728469 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				8ED2B16B2CE71834009F33D7 /* Actions */,
+				8ED2B16B2CE71834009F33D7 /* Extensions */,
 			);
 			name = SwiftRadioUITests;
 			productName = SwiftRadioUITests;
